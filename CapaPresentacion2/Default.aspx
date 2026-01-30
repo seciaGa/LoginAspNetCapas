@@ -3,23 +3,26 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <link href="CSS/Estilo.css" rel="stylesheet" />
     <title>Login</title>
 </head>
 <body>
     <form id="form1" runat="server">
-        <h2>Login</h2>
+   <!-- NAV -->
+   <div class="navbar">
+       <h1>Sistema</h1>
 
-        <asp:Label ID="Label1" runat="server" Text="Usuario:" /><br />
-        <asp:TextBox ID="txtUsuario" runat="server" /><br /><br />
+       <div class="login-form">
+           <asp:TextBox ID="txtUsuario" runat="server" Placeholder="Usuario" />
 
-        <asp:Label ID="Label2" runat="server" Text="Clave:" /><br />
-        <asp:TextBox ID="txtClave" runat="server" TextMode="Password" /><br /><br />
+           <asp:TextBox ID="txtClave" runat="server" TextMode="Password" Placeholder="Contraseña" />
 
-        <asp:Button ID="btnLogin" runat="server"
-            Text="Ingresar"
-            OnClick="btnLogin_Click" /><br /><br />
+           <asp:Button ID="btnLogin" runat="server" Text="Ingresar" OnClick="btnLogin_Click" />
+       </div>
+   </div>
 
-        <asp:Label ID="lblMensaje" runat="server" />
+   <!-- MENSAJE -->
+   <asp:Label ID="lblMensaje" runat="server" CssClass="mensaje" />
     </form>
 </body>
 </html>

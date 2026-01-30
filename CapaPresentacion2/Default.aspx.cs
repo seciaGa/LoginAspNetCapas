@@ -1,29 +1,35 @@
-﻿using System;
-using CapaNegocio;
+﻿using CapaNegocio;
+using System;
+using System.Web.UI;
 
 namespace CapaPresentacion2
 {
-    public partial class _Default : System.Web.UI.Page
+    public partial class _Default : Page
     {
-        CNPersonas negocio = new CNPersonas();
+        CNPersonas bll = new CNPersonas();
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            bool correcto = negocio.Login(
-                txtUsuario.Text.Trim(),
-                txtClave.Text.Trim()
-            );
+            bool acceso = bll.Login(txtUsuario.Text, txtClave.Text);
 
-            if (correcto)
+            if (acceso)
             {
-                lblMensaje.ForeColor = System.Drawing.Color.Green;
-                lblMensaje.Text = "Usuario y clave correctos";
+                Session["usuario"] = txtUsuario.Text;
+                Response.Redirect("Principal.aspx");
             }
             else
             {
-                lblMensaje.ForeColor = System.Drawing.Color.Red;
                 lblMensaje.Text = "Usuario o clave incorrectos";
             }
+        }
+
+        protected void txtUsuario_TextChanged(object sender, EventArgs e)
+        {
+            lblMensaje.Text = "";
         }
     }
 }
