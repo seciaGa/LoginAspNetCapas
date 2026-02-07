@@ -8,7 +8,7 @@ namespace CapaDatos
         {
             bool existe = false;
 
-            using (SqlConnection cn = conexion.ObtenerConexion())
+            using (SqlConnection cn = Conexion.ObtenerConexion())
             {
                 string sql = "SELECT COUNT(*) FROM Usuarios WHERE usuario = @u AND clave = @c";
                 SqlCommand cmd = new SqlCommand(sql, cn);

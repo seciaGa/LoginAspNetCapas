@@ -11,8 +11,9 @@
         <h2>Siii se pudoo</h2>
         <p>Inicio sesión correcto</p>
         <h3>Usuario:<asp:Label ID="lblusuario" Text="text" runat="server"></asp:Label></h3>
-        <form><asp:Button ID= "Button1" Text="Cerrar Sesion" runat="server" OnClick="out_Click"/></form>
-      </div>
-    </form>
+        <asp:button ID="btnHabitaciones" Text="habitaciones" runat="server" OnClick="btn_Click" />
+        <asp:Button ID= "Button1" Text="Cerrar Sesion" runat="server" OnClick="out_Click"/>
+        </form>
+      </div> 
 </body>
 </html>

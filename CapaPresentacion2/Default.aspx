@@ -22,7 +22,8 @@
    </div>
 
    <!-- MENSAJE -->
-   <asp:Label ID="lblMensaje" runat="server" CssClass="mensaje" />
+   <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+   
     </form>
 </body>
 </html>

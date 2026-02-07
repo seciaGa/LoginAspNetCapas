@@ -15,6 +15,11 @@ namespace CapaPresentacion2
             {
                 lblusuario.Text = Session["usuario"].ToString();
             }
+
+        }
+        protected void btn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Habitaciones.aspx");
         }
 
         protected void out_Click(object sender, EventArgs e)
