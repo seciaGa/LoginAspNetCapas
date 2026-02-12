@@ -21,5 +21,15 @@ namespace CapaNegocio
         {
             return habitaciones.AgregarHabitacion(numero, descripcion, cant);
             }
+
+        public bool modificar_habitaciones(int id, int numero, string descripcion, int cant)
+        {
+            return habitaciones.ModificarHabitacion(id, numero, descripcion, cant);
+        }
+
+        public bool Eliminar_habitaciones(int id)
+        {
+            return habitaciones.EliminarHabitacion(id);
+        }
     } 
 }

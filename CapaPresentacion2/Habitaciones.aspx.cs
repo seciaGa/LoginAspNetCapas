@@ -22,8 +22,8 @@ namespace CapaPresentacion2
 
         private void CargarGrid()
         {
-            gvHabitaciones.DataSource = _habitaciones.ObtenerHabitacionesN();
-            gvHabitaciones.DataBind();
+            dgvHabitaciones.DataSource = _habitaciones.ObtenerHabitacionesN();
+            dgvHabitaciones.DataBind();
 
 
         }
@@ -43,6 +43,61 @@ namespace CapaPresentacion2
             {
                 Response.Write("<script>alert('Error al agregar');</script>");
             }
+        }
+
+        protected void dgvHabitaciones_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            dgvHabitaciones.EditIndex = -1;
+            CargarGrid();
+
+        }
+
+        protected void dgvHabitaciones_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int id = Convert.ToInt32(dgvHabitaciones.DataKeys[e.RowIndex].Value);
+            if(_habitaciones.Eliminar_habitaciones(id))
+            {
+                Response.Write("<script>alert('Habitación eliminada');</script>");
+                CargarGrid();
+            }
+            else
+            {
+                Response.Write("<script>alert('Error al eliminar');</script>");
+            }
+
+        }
+
+        protected void dgvHabitaciones_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            dgvHabitaciones.EditIndex = e.NewEditIndex;
+            CargarGrid();
+        }
+
+        protected void dgvHabitaciones_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            int id = Convert.ToInt32(dgvHabitaciones.DataKeys[e.RowIndex].Value);
+            GridViewRow row = dgvHabitaciones.Rows[e.RowIndex];
+
+            int numero = int.Parse((row.Cells[1].Controls[0] as System.Web.UI.WebControls.TextBox).Text);
+            string descripcion = (row.Cells[2].Controls[0] as System.Web.UI.WebControls.TextBox).Text;
+            int cantidad = int.Parse((row.Cells[3].Controls[0] as System.Web.UI.WebControls.TextBox).Text);
+
+            if (_habitaciones.modificar_habitaciones(id, numero, descripcion, cantidad))
+            {
+                Response.Write("<script>alert('Habitación modificada');</script>");
+                dgvHabitaciones.EditIndex = -1;
+                CargarGrid();
+            }
+            else
+            {
+                Response.Write("<script>alert('Error al modificar');</script>");
+            }
+
+        }
+
+        protected void gvHabitaciones_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

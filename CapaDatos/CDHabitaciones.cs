@@ -47,6 +47,40 @@ namespace CapaDatos
             }
         }
 
+        public bool ModificarHabitacion(int id, int numero, string descripcion, int cantidad)
+        {
+            using (SqlConnection con = Conexion.ObtenerConexion())
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand("UPDATE habitaciones SET numero=@numero, descripcion=@des, cant_huespedes=@cant WHERE id_habitaciones=@id", con))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@numero", numero);
+                    cmd.Parameters.AddWithValue("@des", descripcion);
+                    cmd.Parameters.AddWithValue("@cant", cantidad);
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+                    con.Close();
+                    return filasAfectadas > 0;
+                }
+            }
+        }
+
+        public bool EliminarHabitacion(int id)
+        {
+            using (SqlConnection con = Conexion.ObtenerConexion())
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand("DELETE FROM habitaciones WHERE id_habitaciones=@id", con))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+                    con.Close();
+                    return filasAfectadas > 0;
+                }
+            }
+
+        }
+
+
     }
-     
 }

@@ -17,18 +17,27 @@
         <asp:TextBox ID="txtdescripcion" runat="server"></asp:TextBox> <br />
         <asp:label ID="lblcant_huespedes" runat="server" Text="Cantidad de huespedes permitidos"></asp:Label><br />
         <asp:TextBox ID="txtcant" runat="server"></asp:TextBox><br />
-        <asp:Button ID="btnguardar" runat="server" Text="Guardar" OnClick="btnguardar_Click"/><br />
+        <br />
+        <asp:Button ID="btnguardar" runat="server" Text="Guardar" OnClick="btnguardar_Click"/>
         <div>
-        </div>
-        <asp:GridView id="gvHabitaciones" runat="server" AutoGenerateColumns="false">
+        </div><hr />
+        <asp:GridView id="dgvHabitaciones" runat="server" AutoGenerateColumns="false" BackColor="#6699FF" 
+            DataKeyNames="id_habitaciones" OnRowEditing="dgvHabitaciones_RowEditing"
+            OnRowUpdating="dgvHabitaciones_RowUpdating"
+            OnRowCancelingEdit="dgvHabitaciones_RowCancelingEdit"
+            OnRowDeleting="dgvHabitaciones_RowDeleting" OnSelectedIndexChanged="gvHabitaciones_SelectedIndexChanged"
+            >
+      
             <Columns>
                 <asp:BoundField DataField="id_habitaciones" HeaderText="ID"/>
                 <asp:BoundField DataField="numero" HeaderText="#"/>
                 <asp:BoundField DataField="descripcion" HeaderText="Descripcion"/>
                 <asp:BoundField DataField="cant_huespedes" HeaderText="Max-Personas"/>
 
-            </Columns>
+                <asp:CommandField ShowEditButton="true" EditText="Editar"/>
+                <asp:CommandField ShowDeleteButton="true" DeleteText="Eliminar" />
 
+            </Columns>
 
         </asp:GridView>
     </form>
